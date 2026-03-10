@@ -9,7 +9,6 @@ class SneakerController extends BaseController
         $this->sneakerModel = $this->model('Sneaker');
     }
 
-    // Parameters display en message toegevoegd
     public function index($display = 'none', $message = '')
     {
         $result = $this->sneakerModel->getAllSneakers();
@@ -24,14 +23,33 @@ class SneakerController extends BaseController
         $this->view('sneaker/index', $data);
     }
 
-    // Nieuwe delete functie
     public function delete($Id)
     {
         $result = $this->sneakerModel->delete($Id);
-
-        // Stuur door naar sneaker index
         header('Refresh:3; url=' . URLROOT . '/SneakerController/index');
-
         $this->index('flex', 'Sneaker is verwijderd');
+    }
+
+    public function create()
+    {
+        $data = [
+            'title' => 'Nieuwe sneaker toevoegen',
+            'display' => 'none',
+            'message' => ''
+        ];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST['merk']) || empty($_POST['model']) || empty($_POST['type'])) {
+                $data['display'] = 'flex';
+                $data['message'] = 'Vul alle velden in';
+            } else {
+                $this->sneakerModel->create($_POST);
+                $data['display'] = 'flex';
+                $data['message'] = 'De gegevens zijn opgeslagen';
+                header('Refresh: 3; URL=' . URLROOT . '/SneakerController/index');
+            }
+        }
+
+        $this->view('sneaker/create', $data);
     }
 }

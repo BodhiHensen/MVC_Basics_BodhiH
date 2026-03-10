@@ -11,7 +11,6 @@ class Sneaker
 
     public function getAllSneakers()
     {
-        // Let op: 'Id' toegevoegd aan de select!
         $sql = 'SELECT  Id
                        ,Merk
                        ,Model
@@ -26,12 +25,21 @@ class Sneaker
         return $this->db->resultSet();
     }
 
-    // Nieuwe delete functie
     public function delete($Id)
     {
         $sql = "DELETE FROM Sneakers WHERE Id = :Id";
         $this->db->query($sql);
         $this->db->bind(':Id', $Id, PDO::PARAM_INT);
+        return $this->db->execute();
+    }
+
+    public function create($data)
+    {
+        $sql = "INSERT INTO Sneakers (Merk, Model, Type) VALUES (:merk, :model, :type)";
+        $this->db->query($sql);
+        $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
+        $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
+        $this->db->bind(':type', $data['type'], PDO::PARAM_STR);
         return $this->db->execute();
     }
 }

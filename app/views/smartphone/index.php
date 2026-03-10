@@ -1,16 +1,18 @@
 <?php require_once APPROOT . '/views/includes/header.php'; ?>
 
-<!-- Voor het centreren van de container gebruiken we het bootstrap grid -->
 <div class="container">
     <div class="row mt-3 d-flex justify-content-center">
-        
         <div class="col-10">
             <h3><?= $data['title']; ?></h3>
         </div>
-
     </div>
 
-    <!-- Terugkoppeling naar de gebruiker -->
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-10 text-begin">
+            <a href="<?= URLROOT; ?>/SmartphoneController/create" class="btn btn-warning" role="button">Nieuwe smartphone</a>
+        </div>
+    </div>
+
     <div class="row mt-3 d-<?= $data['display']; ?> justify-content-center">
         <div class="col-10 text-begin text-primary">
             <div class="alert alert-success" role="alert">
@@ -57,7 +59,7 @@
                 </tbody>
             </table>
             
-            <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i></a>
+            <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i> Terug</a>
         </div>
     </div>
 </div>

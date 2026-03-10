@@ -7,7 +7,12 @@
         </div>
     </div>
 
-    <!-- Terugkoppeling melding voor na het verwijderen -->
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-10 text-begin">
+            <a href="<?= URLROOT; ?>/HorlogeController/create" class="btn btn-warning" role="button">Nieuw horloge</a>
+        </div>
+    </div>
+
     <div class="row mt-3 d-<?= $data['display']; ?> justify-content-center">
         <div class="col-10 text-begin text-primary">
             <div class="alert alert-success" role="alert">
@@ -43,7 +48,6 @@
                                 <td><?= $horloge->Gewicht; ?></td>
                                 <td><?= $horloge->Releasedatum; ?></td>
                                 <td class="text-center">
-                                    <!-- De delete knop met de prullenbak -->
                                     <a href="<?= URLROOT; ?>/HorlogeController/delete/<?= $horloge->Id; ?>" 
                                        onclick="return confirm('Weet je zeker dat je dit horloge wilt verwijderen?');">
                                        <i class="bi bi-trash3-fill text-danger"></i>
@@ -59,7 +63,6 @@
                 </tbody>
             </table>
             
-            <!-- Link terug naar de homepagina -->
             <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i> Terug</a>
         </div>
     </div>
