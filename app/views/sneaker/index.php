@@ -29,6 +29,7 @@
                         <th>Merk</th>
                         <th>Model</th>
                         <th>Type</th>
+                        <th>Wijzig</th>
                         <th>Verwijder</th>
                     </tr>
                 </thead>
@@ -38,6 +39,11 @@
                             <td><?= $sneaker->Merk; ?></td>
                             <td><?= $sneaker->Model; ?></td>
                             <td><?= $sneaker->Type; ?></td>
+                            <td class="text-center">
+                                <a href="<?= URLROOT; ?>/SneakerController/update/<?= $sneaker->Id; ?>">
+                                    <i class="bi bi-pencil-fill text-success"></i>
+                                </a>
+                            </td>
                             <td class="text-center">
                                 <a href="<?= URLROOT; ?>/SneakerController/delete/<?= $sneaker->Id; ?>" 
                                    onclick="return confirm('Weet je zeker dat je dit record wilt verwijderen?');">

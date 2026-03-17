@@ -33,6 +33,7 @@
                         <th>Materiaal</th>
                         <th>Gewicht</th>
                         <th>Releasedatum</th>
+                        <th>Wijzig</th>
                         <th>Verwijder</th>
                     </tr>
                 </thead>
@@ -47,6 +48,11 @@
                                 <td><?= $horloge->Materiaal; ?></td>
                                 <td><?= $horloge->Gewicht; ?></td>
                                 <td><?= $horloge->Releasedatum; ?></td>
+                                <td class="text-center">
+                                    <a href="<?= URLROOT; ?>/HorlogeController/update/<?= $horloge->Id; ?>">
+                                        <i class="bi bi-pencil-fill text-success"></i>
+                                    </a>
+                                </td>
                                 <td class="text-center">
                                     <a href="<?= URLROOT; ?>/HorlogeController/delete/<?= $horloge->Id; ?>" 
                                        onclick="return confirm('Weet je zeker dat je dit horloge wilt verwijderen?');">
