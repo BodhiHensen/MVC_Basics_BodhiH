@@ -180,3 +180,50 @@ VALUES
 ('Casio', 'G-Shock', 'Sport', 150.00, 'Kunststof', 90.00, '2023-06-01'),
 ('Fossil', 'Gen 5E', 'Casual', 250.00, 'Staal', 80.00, '2023-07-01'),
 ('Garmin', 'Fenix 6 Pro', 'Sport', 600.00, 'Staal', 140.00, '2023-08-01');
+
+-- Step: 08
+-- *********************************************************************************
+-- Doel : Maak een nieuwe tabel aan met de naam Zangeressen
+-- *********************************************************************************
+-- Versie       Datum           Auteur              Omschrijving
+-- ******       *****           ******              ************
+-- 01           17-03-2026      Copilot            Tabel Zangeressen
+-- *********************************************************************************
+-- Onderstaande velden toevoegen aan de tabel Zangeressen
+-- Naam, Genre, Land, Leeftijd, Vermogen
+-- *********************************************************************************
+
+CREATE TABLE Zangeressen
+(
+    Id                  SMALLINT        UNSIGNED    NOT NULL    AUTO_INCREMENT
+   ,Naam                VARCHAR(100)                NOT NULL
+   ,Genre               VARCHAR(50)                 NOT NULL
+   ,Land                VARCHAR(50)                 NOT NULL
+   ,Leeftijd            SMALLINT        UNSIGNED    NOT NULL
+   ,Vermogen            DECIMAL(12,2)               NOT NULL
+   ,CONSTRAINT          PK_Zangeressen_Id          PRIMARY KEY (Id)
+) ENGINE=InnoDB;
+
+-- Step: 09
+-- *********************************************************************************
+-- Doel : Vul de tabel Zangeressen met gegevens
+-- *********************************************************************************
+-- Versie       Datum           Auteur              Omschrijving
+-- ******       *****           ******              ************
+-- 01           17-03-2026      Copilot            Vulling Zangeressen
+-- *********************************************************************************
+
+INSERT INTO Zangeressen
+(
+    Naam
+   ,Genre
+   ,Land
+   ,Leeftijd
+   ,Vermogen
+)
+VALUES
+('Beyoncé', 'Pop/R&B', 'Verenigde Staten', 42, 520000000.00),
+('Taylor Swift', 'Pop', 'Verenigde Staten', 35, 740000000.00),
+('Rihanna', 'Pop/R&B', 'Barbados', 36, 1700000000.00),
+('Madonna', 'Pop', 'Verenigde Staten', 65, 850000000.00),
+('Shakira', 'Pop', 'Colombia', 47, 300000000.00);
