@@ -35,21 +35,49 @@ class HorlogeController extends BaseController
         $data = [
             'title' => 'Nieuw horloge toevoegen',
             'display' => 'none',
-            'message' => ''
+            'message' => '',
+            'errors' => []
         ];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['merk']) || empty($_POST['model']) || empty($_POST['type']) || 
-                empty($_POST['prijs']) || empty($_POST['materiaal']) || 
-                empty($_POST['gewicht']) || empty($_POST['releasedatum'])) {
-                
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-            } else {
+            if (empty($_POST['merk'])) {
+                $data['errors']['merk'] = 'Voor een merk in';
+            }
+
+            if (empty($_POST['model'])) {
+                $data['errors']['model'] = 'Voor een model in';
+            }
+
+            if (empty($_POST['type'])) {
+                $data['errors']['type'] = 'Voor een type in';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $data['errors']['prijs'] = 'Voor een prijs in';
+            }
+
+            if (empty($_POST['materiaal'])) {
+                $data['errors']['materiaal'] = 'Voor een materiaal in';
+            }
+
+            if (empty($_POST['gewicht'])) {
+                $data['errors']['gewicht'] = 'Voor een gewicht in';
+            }
+
+            if (empty($_POST['releasedatum'])) {
+                $data['errors']['releasedatum'] = 'Voor een releasedatum in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->horlogeModel->create($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'De gegevens zijn opgeslagen';
+                $data['color'] = 'success';
                 header('Refresh: 3; URL=' . URLROOT . '/HorlogeController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 
@@ -62,25 +90,51 @@ class HorlogeController extends BaseController
             'title' => 'Wijzig horloge',
             'display' => 'none',
             'message' => '',
-            'color' => 'success'
+            'color' => 'success',
+            'errors' => []
         ];
 
         $data['horloge'] = $this->horlogeModel->getHorlogeById($id);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['merk']) || empty($_POST['model']) || empty($_POST['type']) || 
-                empty($_POST['prijs']) || empty($_POST['materiaal']) || 
-                empty($_POST['gewicht']) || empty($_POST['releasedatum'])) {
-                
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-                $data['color'] = 'danger';
-            } else {
+            if (empty($_POST['merk'])) {
+                $data['errors']['merk'] = 'Voor een merk in';
+            }
+
+            if (empty($_POST['model'])) {
+                $data['errors']['model'] = 'Voor een model in';
+            }
+
+            if (empty($_POST['type'])) {
+                $data['errors']['type'] = 'Voor een type in';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $data['errors']['prijs'] = 'Voor een prijs in';
+            }
+
+            if (empty($_POST['materiaal'])) {
+                $data['errors']['materiaal'] = 'Voor een materiaal in';
+            }
+
+            if (empty($_POST['gewicht'])) {
+                $data['errors']['gewicht'] = 'Voor een gewicht in';
+            }
+
+            if (empty($_POST['releasedatum'])) {
+                $data['errors']['releasedatum'] = 'Voor een releasedatum in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->horlogeModel->updateHorloge($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'Het record is succesvol opgeslagen';
                 $data['color'] = 'success';
                 header('Refresh: 3; url=' . URLROOT . '/HorlogeController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 

@@ -35,23 +35,56 @@ class SmartphoneController extends BaseController
         $data = [
             'title' => 'Nieuwe smartphone toevoegen',
             'display' => 'none',
-            'message' => ''
+            'message' => '',
+            'errors' => []
         ];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Validatie
-            if (empty($_POST['merk']) || empty($_POST['model']) || empty($_POST['prijs']) || 
-                empty($_POST['geheugen']) || empty($_POST['besturingssysteem']) || 
-                empty($_POST['schermgrootte']) || empty($_POST['releasedatum']) || 
-                empty($_POST['megapixels'])) {
-                
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-            } else {
+            if (empty($_POST['merk'])) {
+                $data['errors']['merk'] = 'Voor een merk in';
+            } elseif (strlen($_POST['merk']) > 20) {
+                $data['errors']['merk'] = 'Merk mag maximaal 20 tekens bevatten';
+            }
+
+            if (empty($_POST['model'])) {
+                $data['errors']['model'] = 'Voor een model in';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $data['errors']['prijs'] = 'Voor een prijs in';
+            }
+
+            if (empty($_POST['geheugen'])) {
+                $data['errors']['geheugen'] = 'Voor een geheugen in';
+            }
+
+            if (empty($_POST['besturingssysteem'])) {
+                $data['errors']['besturingssysteem'] = 'Voor een besturingssysteem in';
+            }
+
+            if (empty($_POST['schermgrootte'])) {
+                $data['errors']['schermgrootte'] = 'Voor een schermgrootte in';
+            }
+
+            if (empty($_POST['releasedatum'])) {
+                $data['errors']['releasedatum'] = 'Voor een releasedatum in';
+            }
+
+            if (empty($_POST['megapixels'])) {
+                $data['errors']['megapixels'] = 'Voor een megapixels in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->smartphoneModel->create($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'De gegevens zijn opgeslagen';
+                $data['color'] = 'success';
                 header('Refresh: 3; URL=' . URLROOT . '/SmartphoneController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 
@@ -64,7 +97,8 @@ class SmartphoneController extends BaseController
             'title' => 'Wijzig smartphone',
             'display' => 'none',
             'message' => '',
-            'color' => 'success'
+            'color' => 'success',
+            'errors' => []
         ];
 
         // Haal bestaande data op
@@ -72,20 +106,50 @@ class SmartphoneController extends BaseController
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Validatie
-            if (empty($_POST['merk']) || empty($_POST['model']) || empty($_POST['prijs']) || 
-                empty($_POST['geheugen']) || empty($_POST['besturingssysteem']) || 
-                empty($_POST['schermgrootte']) || empty($_POST['releasedatum']) || 
-                empty($_POST['megapixels'])) {
+            if (empty($_POST['merk'])) {
+                $data['errors']['merk'] = 'Voor een merk in';
+            } elseif (strlen($_POST['merk']) > 20) {
+                $data['errors']['merk'] = 'Merk mag maximaal 20 tekens bevatten';
+            }
 
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-                $data['color'] = 'danger';
-            } else {
+            if (empty($_POST['model'])) {
+                $data['errors']['model'] = 'Voor een model in';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $data['errors']['prijs'] = 'Voor een prijs in';
+            }
+
+            if (empty($_POST['geheugen'])) {
+                $data['errors']['geheugen'] = 'Voor een geheugen in';
+            }
+
+            if (empty($_POST['besturingssysteem'])) {
+                $data['errors']['besturingssysteem'] = 'Voor een besturingssysteem in';
+            }
+
+            if (empty($_POST['schermgrootte'])) {
+                $data['errors']['schermgrootte'] = 'Voor een schermgrootte in';
+            }
+
+            if (empty($_POST['releasedatum'])) {
+                $data['errors']['releasedatum'] = 'Voor een releasedatum in';
+            }
+
+            if (empty($_POST['megapixels'])) {
+                $data['errors']['megapixels'] = 'Voor een megapixels in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->smartphoneModel->updateSmartphone($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'Het record is succesvol opgeslagen';
                 $data['color'] = 'success';
                 header('Refresh: 3; url=' . URLROOT . '/SmartphoneController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 

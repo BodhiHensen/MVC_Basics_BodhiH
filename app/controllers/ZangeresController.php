@@ -35,20 +35,41 @@ class ZangeresController extends BaseController
         $data = [
             'title' => 'Nieuwe zangeres toevoegen',
             'display' => 'none',
-            'message' => ''
+            'message' => '',
+            'errors' => []
         ];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['naam']) || empty($_POST['genre']) || empty($_POST['land']) ||
-                empty($_POST['leeftijd']) || empty($_POST['vermogen'])) {
+            if (empty($_POST['naam'])) {
+                $data['errors']['naam'] = 'Voor een naam in';
+            }
 
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-            } else {
+            if (empty($_POST['genre'])) {
+                $data['errors']['genre'] = 'Voor een genre in';
+            }
+
+            if (empty($_POST['land'])) {
+                $data['errors']['land'] = 'Voor een land in';
+            }
+
+            if (empty($_POST['leeftijd'])) {
+                $data['errors']['leeftijd'] = 'Voor een leeftijd in';
+            }
+
+            if (empty($_POST['vermogen'])) {
+                $data['errors']['vermogen'] = 'Voor een vermogen in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->zangeresModel->create($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'De gegevens zijn opgeslagen';
+                $data['color'] = 'success';
                 header('Refresh: 3; URL=' . URLROOT . '/ZangeresController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 
@@ -61,24 +82,43 @@ class ZangeresController extends BaseController
             'title' => 'Wijzig zangeres',
             'display' => 'none',
             'message' => '',
-            'color' => 'success'
+            'color' => 'success',
+            'errors' => []
         ];
 
         $data['zangeres'] = $this->zangeresModel->getZangeresById($id);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['naam']) || empty($_POST['genre']) || empty($_POST['land']) ||
-                empty($_POST['leeftijd']) || empty($_POST['vermogen'])) {
+            if (empty($_POST['naam'])) {
+                $data['errors']['naam'] = 'Voor een naam in';
+            }
 
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-                $data['color'] = 'danger';
-            } else {
+            if (empty($_POST['genre'])) {
+                $data['errors']['genre'] = 'Voor een genre in';
+            }
+
+            if (empty($_POST['land'])) {
+                $data['errors']['land'] = 'Voor een land in';
+            }
+
+            if (empty($_POST['leeftijd'])) {
+                $data['errors']['leeftijd'] = 'Voor een leeftijd in';
+            }
+
+            if (empty($_POST['vermogen'])) {
+                $data['errors']['vermogen'] = 'Voor een vermogen in';
+            }
+
+            if (empty($data['errors'])) {
                 $this->zangeresModel->updateZangeres($_POST);
                 $data['display'] = 'flex';
                 $data['message'] = 'Het record is succesvol opgeslagen';
                 $data['color'] = 'success';
                 header('Refresh: 3; url=' . URLROOT . '/ZangeresController/index');
+            } else {
+                $data['display'] = 'flex';
+                $data['message'] = 'Controleer de invoer en verbeter de gemarkeerde velden.';
+                $data['color'] = 'danger';
             }
         }
 
