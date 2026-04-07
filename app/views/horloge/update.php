@@ -69,10 +69,10 @@
                         <div class="invalid-feedback"><?= $data['errors']['releasedatum']; ?></div>
                     <?php endif; ?>
                 </div>
-                <button type="submit" class="btn btn-primary">Verstuur</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle"></i> Verstuur</button>
             </form>
             <br>
-            <a href="<?= URLROOT; ?>/HorlogeController/index"><i class="bi bi-arrow-left"></i> Terug</a>
+            <a href="<?= URLROOT; ?>/HorlogeController/index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Terug naar overzicht</a>
         </div>
     </div>
 </div>

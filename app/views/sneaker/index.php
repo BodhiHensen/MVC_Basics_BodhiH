@@ -9,7 +9,7 @@
 
     <div class="row mt-3 d-flex justify-content-center">
         <div class="col-10 text-begin">
-            <a href="<?= URLROOT; ?>/SneakerController/create" class="btn btn-warning" role="button">Nieuwe sneaker</a>
+            <a href="<?= URLROOT; ?>/SneakerController/create" class="btn btn-success" role="button"><i class="bi bi-plus-circle"></i> Nieuwe sneaker</a>
         </div>
     </div>
 
@@ -55,7 +55,7 @@
                 </tbody>
             </table>
             
-            <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i> Terug</a>
+            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Terug naar homepage</a>
         </div>
     </div>
 </div>

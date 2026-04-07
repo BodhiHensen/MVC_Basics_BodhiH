@@ -9,7 +9,7 @@
 
     <div class="row mt-3 d-flex justify-content-center">
         <div class="col-10 text-begin">
-            <a href="<?= URLROOT; ?>/HorlogeController/create" class="btn btn-warning" role="button">Nieuw horloge</a>
+            <a href="<?= URLROOT; ?>/HorlogeController/create" class="btn btn-warning" role="button"><i class="bi bi-plus-circle"></i> Nieuw horloge</a>
         </div>
     </div>
 
@@ -69,7 +69,7 @@
                 </tbody>
             </table>
             
-            <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i> Terug</a>
+            <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Terug naar homepage</a>
         </div>
     </div>
 </div>
